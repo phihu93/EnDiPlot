@@ -1,0 +1,26 @@
+<nfiles 
+ 3
+<files
+ G1.dat
+ G2.dat
+ G3.dat
+<offset
+ 0
+ 1
+ 3
+<colors
+ C0
+ C1
+ C2
+<plot_titles
+ True
+<titles
+ Path 1
+ Path 2
+ Path 3
+<fontsize
+ 8
+<plot_labels
+ True
+<plot_titles
+ True

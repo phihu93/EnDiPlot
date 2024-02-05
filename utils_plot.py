@@ -252,7 +252,7 @@ class EnergyPlot:
                     previous_value = element_plot_data.values[i - 1]
                 else:
                     raise ValueError(
-                        "Dashed lines havehave to be"
+                        "Dashed lines have to be"
                         "embedded between two states of IM"
                     )
                 if i + 1 <= num_states:
@@ -260,12 +260,12 @@ class EnergyPlot:
                     next_value = element_plot_data.values[i + 1]
                 else:
                     raise ValueError(
-                        "Dashed lines havehave to be"
+                        "Dashed lines have to be"
                         "embedded between two states of IM"
                     )
                 if previous_kind != "IM" and next_kind != "IM":
                     raise ValueError(
-                        "Dashed lines havehave to be"
+                        "Dashed lines have to be"
                         "embedded between two states of IM"
                     )
                 plt.plot(

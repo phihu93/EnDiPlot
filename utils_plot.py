@@ -90,12 +90,10 @@ def plot_labels(
     label_shift = (y_range[1] - y_range[0]) / 50
     counter = option_data["offset"][num_plot]
     for i, label in enumerate(element_plot_data.labels):
-        if i > 0:
-            if element_plot_data.kinds[i] == "IM" and element_plot_data.kinds[i - 1] == "IM":
-                # If to intermediates are adjacent.
-                counter += 1
         x_start = counter
         counter = counter + element_plot_data.lengths[i]
+        if element_plot_data.kinds[i] == "dashed":
+            continue
         x_end = counter
         x_mid = (x_end + x_start) / 2
         value = element_plot_data.values[i]
@@ -105,7 +103,12 @@ def plot_labels(
                 or element_plot_data.values[i + 1] > element_plot_data.values[i]
             ):
                 # Add extra sift if TS is below IM.
-                value = max(element_plot_data.values[i - 1], element_plot_data.values[i + 1]) + 0.01
+                value = (
+                    max(
+                        element_plot_data.values[i - 1], element_plot_data.values[i + 1]
+                    )
+                    + 0.01
+                )
         y_shifted = value + label_shift
         color = option_data["colors"][num_plot]
         plt.text(
@@ -228,8 +231,9 @@ class EnergyPlot:
         Raises
         ------
         ValueError
-            If transitions state is not embedded between two states of IM.
+            If transitions state or dashed line is not embedded between two states of IM.
         """
+        num_states = len(element_plot_data.kinds)
         counter = option_data["offset"][num_plot]
         for i, kind in enumerate(element_plot_data.kinds):
             x_start = counter
@@ -238,22 +242,37 @@ class EnergyPlot:
             value = element_plot_data.values[i]
             if kind == "IM":
                 # Plot line for intermediate.
-                if i > 0:
-                    previous_kind = element_plot_data.kinds[i - 1]
-                    if previous_kind == "IM":
-                        # Plot dashed line between adjacent intermediates.
-                        previous_value = element_plot_data.values[i - 1]
-                        plt.plot(
-                            [x_start, x_start + 1],
-                            [previous_value, value],
-                            c=option_data["colors"][num_plot],
-                            ls=":",
-                        )
-                        x_start += 1
-                        x_end += 1
-                        counter += 1
                 plt.plot(
                     [x_start, x_end], [value, value], c=option_data["colors"][num_plot]
+                )
+            if kind == "dashed":
+                # Plot dashed lines between intermediates.
+                if i > 0:
+                    previous_kind = element_plot_data.kinds[i - 1]
+                    previous_value = element_plot_data.values[i - 1]
+                else:
+                    raise ValueError(
+                        "Dashed lines havehave to be"
+                        "embedded between two states of IM"
+                    )
+                if i + 1 <= num_states:
+                    next_kind = element_plot_data.kinds[i + 1]
+                    next_value = element_plot_data.values[i + 1]
+                else:
+                    raise ValueError(
+                        "Dashed lines havehave to be"
+                        "embedded between two states of IM"
+                    )
+                if previous_kind != "IM" and next_kind != "IM":
+                    raise ValueError(
+                        "Dashed lines havehave to be"
+                        "embedded between two states of IM"
+                    )
+                plt.plot(
+                    [x_start, x_end],
+                    [previous_value, next_value],
+                    c=option_data["colors"][num_plot],
+                    ls=":",
                 )
             if kind == "TS":
                 # Plot parabola for transition state.
@@ -379,6 +398,5 @@ def do_energy_diagram(option_file: str) -> None:
     for num_plot in range(option_data["nfiles"]):
         do_the_plot.plot_lines(plot_data[num_plot], option_data, num_plot)
         if option_data["plot_labels"]:
-            print(type(y_range))
             plot_labels(plot_data[num_plot], option_data, num_plot, y_range)
     do_the_plot.save_figure(y_range, option_data)

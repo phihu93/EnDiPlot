@@ -1,6 +1,8 @@
 
 # EnDiPlot
 
+[![](https://img.shields.io/badge/Python-3.8-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 The `EnDiPlot` Python package plots energy diagrams for reaction mechanisms using `matplotlib`.
 An example of a plot is given in folder *data*. 
 The program is run by: `python chemplots -o <path/to/option/data/file>`
@@ -43,3 +45,6 @@ Data for each state to be plotted has to be defined in one line containing four 
 2. `kind`: Defines the kind of state, i.e., "IM" for an intermediate and "TS" for a transition state.
 3. `label`: Label of the state, which is plotted, if `plot_label` is True in option data file.
 4. `value`: A float value where the state is plotted.
+
+If `kind` is dashed, a dashed line is plotted between its preceding and following intermediate. 
+For dashed lines, `label` and `value` are ignored.

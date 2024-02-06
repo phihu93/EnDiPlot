@@ -43,11 +43,11 @@ def read_options(opf: str) -> Dict:
             elif key == "nfiles":
                 option_data[key] = int(key_input)
             elif key == "plot_titles":
-                option_data[key] = bool(key_input)
+                option_data[key] = True if key_input.lower() == "true" else False
             elif key == "titles":
                 option_data[key].append(key_input)
             elif key == "plot_labels":
-                option_data[key] = bool(key_input)
+                option_data[key] = True if key_input.lower() == "true" else False
             elif key == "fontsize":
                 option_data[key] = float(key_input)
             elif key == "ymin":

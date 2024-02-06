@@ -252,21 +252,18 @@ class EnergyPlot:
                     previous_value = element_plot_data.values[i - 1]
                 else:
                     raise ValueError(
-                        "Dashed lines have to be"
-                        "embedded between two states of IM"
+                        "Dashed lines have to be" "embedded between two states of IM"
                     )
                 if i + 1 <= num_states:
                     next_kind = element_plot_data.kinds[i + 1]
                     next_value = element_plot_data.values[i + 1]
                 else:
                     raise ValueError(
-                        "Dashed lines have to be"
-                        "embedded between two states of IM"
+                        "Dashed lines have to be" "embedded between two states of IM"
                     )
                 if previous_kind != "IM" and next_kind != "IM":
                     raise ValueError(
-                        "Dashed lines have to be"
-                        "embedded between two states of IM"
+                        "Dashed lines have to be" "embedded between two states of IM"
                     )
                 plt.plot(
                     [x_start, x_end],
@@ -398,5 +395,6 @@ def do_energy_diagram(option_file: str) -> None:
     for num_plot in range(option_data["nfiles"]):
         do_the_plot.plot_lines(plot_data[num_plot], option_data, num_plot)
         if option_data["plot_labels"]:
+            print(option_data["plot_labels"])
             plot_labels(plot_data[num_plot], option_data, num_plot, y_range)
     do_the_plot.save_figure(y_range, option_data)

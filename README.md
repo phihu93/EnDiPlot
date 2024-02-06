@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 The `EnDiPlot` Python package plots energy diagrams for reaction mechanisms using `matplotlib`.
-An example of a plot is given in folder *data*. 
+An example of a plot is given in the folder `data/` of this repository. 
 The program is run by: `python chemplots.py -o <path/to/option/data/file>`
 
 

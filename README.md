@@ -5,15 +5,21 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The `EnDiPlot` Python package plots energy diagrams for reaction mechanisms using `matplotlib`.
-An example of a plot is given in folder *data*. 
-The program is run by: `python chemplots -o <path/to/option/data/file>`
+The `EnDiPlot` Python package plots energy diagrams for chemical reaction mechanisms using `matplotlib`.
+It can be installed from this repository using `pip`. Just pull and run `pip install -e .` :rocket:.
 
+An example of a plot created automatically with `EnDiPlot` is shown below:
+
+![EnDiPlot Example](./example_plot.png)
+
+An example script of how to use `EnDiPlot` is provided in the folder `scripts/`. It can be run by:  
+`python chemplots.py -o <path/to/option/data/file>`
+
+A more detailed explanation of the required input files and how to set them up is provided below.
 
 ### Required input files
 
 - File with general data used for the plot (*option data file*).
-
 - Files containing specific values to be plotted for a reaction path (*plot data file*).
  
 #### Option data file

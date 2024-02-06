@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from utils_plot import do_energy_diagram
+from endiplot.utils_plot import do_energy_diagram
 
 
 def main(config: argparse.Namespace) -> None:

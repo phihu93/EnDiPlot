@@ -13,7 +13,7 @@
  C1
  C2
 <plot_titles
- True
+ False
 <titles
  Path 1
  Path 2
@@ -21,6 +21,4 @@
 <fontsize
  8
 <plot_labels
- True
-<plot_titles
- True
+ False

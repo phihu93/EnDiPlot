@@ -4,7 +4,7 @@ from typing import Tuple, List, Dict
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utils_io import read_options
+from .utils_io import read_options
 
 
 class States:

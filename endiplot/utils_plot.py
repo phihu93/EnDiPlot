@@ -343,6 +343,25 @@ class EnergyPlot:
             y_range = [option_data["ymin"], option_data["ymax"]]
         return x_range, y_range
 
+    @staticmethod
+    def plot_legend(option_data: Dict) -> None:
+        """
+        Plot a legend.
+
+        Parameters
+        ----------
+        option_data : dict
+            General data for the figure.
+        """
+        for num_plot in range(option_data["nfiles"]):
+            plt.plot(
+                [],
+                [],
+                label=option_data["titles"][num_plot],
+                c=option_data["colors"][num_plot],
+            )
+        plt.legend(fontsize=option_data["fontsize"])
+
 
 def read_infiles(inf: str) -> States:
     """
@@ -397,4 +416,6 @@ def do_energy_diagram(option_file: str) -> None:
         if option_data["plot_labels"]:
             print(option_data["plot_labels"])
             plot_labels(plot_data[num_plot], option_data, num_plot, y_range)
+    if option_data["plot_titles"]:
+        do_the_plot.plot_legend(option_data)
     do_the_plot.save_figure(y_range, option_data)

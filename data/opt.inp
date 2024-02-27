@@ -13,11 +13,11 @@
  C1
  C2
 <plot_titles
- False
+ True
 <titles
- Path 1
- Path 2
- Path 3
+ Path_1
+ Path_2
+ Path_3
 <fontsize
  8
 <plot_labels
